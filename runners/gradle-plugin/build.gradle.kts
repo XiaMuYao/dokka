@@ -1,7 +1,4 @@
-import org.jetbrains.configureBintrayPublicationIfNecessary
-import org.jetbrains.configureSpacePublicationIfNecessary
-import org.jetbrains.createDokkaPublishTaskIfNecessary
-import org.jetbrains.dokkaVersion
+import org.jetbrains.*
 
 plugins {
     `java-gradle-plugin`
@@ -81,8 +78,12 @@ publishing {
     }
 }
 
+registerDokkaArtifactPublication("dokkaGradlePlugin") {
+    artifactId = "dokka-gradle-plugin"
+}
 
 configureSpacePublicationIfNecessary("dokkaGradlePluginPluginMarkerMaven", "pluginMaven")
 configureBintrayPublicationIfNecessary("dokkaGradlePluginPluginMarkerMaven", "pluginMaven")
+configureSonatypePublicationIfNecessary("dokkaGradlePlugin")
 createDokkaPublishTaskIfNecessary()
 
